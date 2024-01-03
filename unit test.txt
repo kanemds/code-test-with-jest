@@ -1,0 +1,21 @@
+
+A unit test is a type of software testing where individual units or components of a software application are tested in isolation from the rest of the system.
+The purpose of unit testing is to validate that each unit of the software performs as designed. A "unit" in this context is the smallest testable part of an application, typically a function, method, or class.
+
+
+key: Isolation, Automation, Repeatable, Fast, Independent,Clear and Readable
+
+
+more details:
+
+Isolation: Unit tests should be isolated, meaning they should only test the functionality of the specific unit they are targeting. Dependencies on other parts of the system should be minimized or mocked.
+
+Automation: Unit tests are usually automated, allowing for frequent and easy execution. Automated tests can be run quickly and consistently, making them an integral part of continuous integration and continuous delivery (CI/CD) processes.
+
+Repeatable: Unit tests should produce the same result every time they are run. This ensures consistency and helps identify problems when changes are made to the codebase.
+
+Fast: Unit tests should execute quickly to allow for frequent testing during development. Fast tests encourage developers to run them frequently, helping to catch issues early in the development process.
+
+Independent: Each unit test should be independent of others, meaning the success or failure of one test should not affect the outcome of another. This helps pinpoint the source of errors more easily.
+
+Clear and Readable: Unit tests should be clear, readable, and maintainable. A well-written unit test serves as documentation for the expected behavior of the code it tests.

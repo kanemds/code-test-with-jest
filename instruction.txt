@@ -1,0 +1,18 @@
+npm init // install package json
+
+npm jest -d // install in only development mode
+
+
+by running the command, change package.json script:
+
+from:
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+to:
+
+  "scripts": {
+  "test": "jest"
+  },

@@ -1,0 +1,8 @@
+1. catch bugs
+
+2. save time by running tests instead of manual checks
+
+3. more confident about your code
+
+4. all test codes can be documented and reuse
+
