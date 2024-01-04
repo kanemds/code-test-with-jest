@@ -1,0 +1,2 @@
+  // /learn react/i means case insensitive, which the frontPage can be LearN ReAct
+  // 'learn react' which has to be exactly the same
