@@ -1,0 +1,63 @@
+https://jestjs.io/docs/expect
+
+toBe(value) not.toBe(Value) // string, number, boolean
+toContain(item) and not.toContain(item) // an array or an iterable (like a Set or a Map)
+toMatch(string) and not.toMatch(string) // string only
+toEqual(value) and not.toEqual(value) // obj, array and nested objs and arrays
+toHaveLength(number) and not.toHaveLength(number) // strings and arrays
+
+1. toBe(value) not.toBe(Value)
+
+  test('add 1 + 2 to equal 3', () => {
+    expect(sum(1, 2)).toBe(3)
+  })
+
+  test('add 1 + 2 to equal 3', () => {
+    expect(sum(1, 2))not.toBe(4)
+  })
+
+
+2. toContain(item) and not.toContain(item): 
+
+  test('checks if a string contains "world"', () => {
+  expect('hello world').toMatch(/world/);
+  });
+
+  test('checks if a string does not contain "foo"', () => {
+    expect('bar').not.toMatch(/foo/);
+  });
+
+3. toMatch(string) and not.toMatch(string):
+
+  test('checks if a string contains "world"', () => {
+  expect('hello world').toMatch(/world/);
+  });
+
+  test('checks if a string does not contain "foo"', () => {
+    expect('bar').not.toMatch(/foo/);
+  });
+
+4. toEqual(value) and not.toEqual(value):
+  test('checks if two objects are equal', () => {
+    const obj1 = { a: 1, b: 2 };
+    const obj2 = { a: 1, b: 2 };
+    expect(obj1).toEqual(obj2);
+  });
+
+  test('checks if two arrays are equal', () => {
+    const arr1 = [1, 2, 3];
+    const arr2 = [1, 2, 3];
+    expect(arr1).toEqual(arr2);
+  });
+
+5. toHaveLength(number) and not.toHaveLength(number):
+
+  test('checks if an array has a length of 3', () => {
+    const array = [1, 2, 3];
+    expect(array).toHaveLength(3);
+  });
+
+  test('checks if an array does not have a length of 5', () => {
+    const array = [1, 2, 3];
+    expect(array).not.toHaveLength(5);
+  });

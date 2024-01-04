@@ -14,5 +14,8 @@ from:
 to:
 
   "scripts": {
-  "test": "jest"
+  "test": "jest --coverage"
   },
+
+
+  adding --coverage will check if all test code are being test in case missing
