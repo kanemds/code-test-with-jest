@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const Login = () => {
 
@@ -6,6 +7,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [disableButton, setDisableButton] = useState(true)
   const [error, setError] = useState(false)
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     if (username && password) {
@@ -15,12 +17,22 @@ const Login = () => {
     }
   }, [username, password])
 
+  const handleLogin = async (e) => {
+    e.preventDefault()
+    try {
+      const { data } = await axios.get('https://jsonplaceholder.typicode.com/users/1')
+      setUser(data)
+    } catch (error) {
+      setError(true)
+    }
+  }
+
   return (
     <div className='container'>
       <form className='loginForm'>
         <input type="text" placeholder='username' value={username} onChange={(e) => setUsername(e.target.value)} />
         <input type="password" placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button disabled={disableButton}>Login</button>
+        <button disabled={disableButton} onClick={handleLogin}>Login</button>
         <span
           data-testid='error'
           style={{ visibility: error ? 'visible' : 'hidden' }}
