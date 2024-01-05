@@ -19,3 +19,8 @@ to:
 
 
   adding --coverage will check if all test code are being test in case missing
+
+
+      // create react app build in jest
+
+       "test": "react-scripts test --coverage",
