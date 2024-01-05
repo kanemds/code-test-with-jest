@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1704339508676" clover="3.2.0">
-  <project timestamp="1704339508676" name="All files">
+<coverage generated="1704409138482" clover="3.2.0">
+  <project timestamp="1704409138482" name="All files">
     <metrics statements="15" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="4" elements="20" coveredelements="18" complexity="0" loc="15" ncloc="15" packages="1" files="4" classes="4"/>
     <file name="isPalindrome.js" path="/home/kanem/lighthouse/ownProject/code_test_with_jest/unit test/functions/isPalindrome.js">
       <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
