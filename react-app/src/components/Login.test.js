@@ -1,5 +1,19 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import Login from './Login'
+
+// technically able to use code but what if no internet?
+// const { data } = await axios.get('https://jsonplaceholder.typicode.com/users/1')
+
+// simulate api
+jest.mock('axios', () => ({
+  // else not work wont work
+  __esModule: true,
+  default: {
+    get: () => ({
+      data: { id: 1, name: 'John' }
+    })
+  }
+}))
 
 test('username input should be render', () => {
   render(<Login />)
@@ -38,6 +52,12 @@ test('button should be disable ', () => {
   expect(buttonEl).toBeDisabled()
 })
 
+test('loading should not be render when no click event ', () => {
+  render(<Login />)
+  const buttonEl = screen.getByRole("button")
+  expect(buttonEl).not.toHaveTextContent(/loading.../i)
+})
+
 test('check error message', () => {
   render(<Login />)
   const errorEl = screen.getByTestId("error")
@@ -73,4 +93,51 @@ test('button enable when both username and password inputs exist ', () => {
   fireEvent.change(usernameEl, { target: { value: testValue } })
   fireEvent.change(passwordEl, { target: { value: testValue } })
   expect(buttonEl).not.toBeDisabled()
+})
+
+test('loading should be render when click ', () => {
+  render(<Login />)
+  const buttonEl = screen.getByRole("button")
+  const usernameEl = screen.getByPlaceholderText(/username/i)
+  const passwordEl = screen.getByPlaceholderText(/password/i)
+
+  const testValue = 'test'
+
+  fireEvent.change(usernameEl, { target: { value: testValue } })
+  fireEvent.change(passwordEl, { target: { value: testValue } })
+  fireEvent.click(buttonEl)
+  expect(buttonEl).toHaveTextContent(/loading.../i)
+})
+
+
+test('loading... button should be change back to login after data is retrieved', async () => {
+  render(<Login />)
+  const buttonEl = screen.getByRole("button")
+  const usernameEl = screen.getByPlaceholderText(/username/i)
+  const passwordEl = screen.getByPlaceholderText(/password/i)
+
+  const testValue = 'test'
+
+  fireEvent.change(usernameEl, { target: { value: testValue } })
+  fireEvent.change(passwordEl, { target: { value: testValue } })
+  fireEvent.click(buttonEl)
+  await waitFor(() => expect(buttonEl).not.toHaveTextContent(/loading.../i))
+})
+
+test('User should render after data retrieved', async () => {
+  render(<Login />)
+  const buttonEl = screen.getByRole("button")
+  const usernameEl = screen.getByPlaceholderText(/username/i)
+  const passwordEl = screen.getByPlaceholderText(/password/i)
+
+  const testValue = 'test'
+
+  fireEvent.change(usernameEl, { target: { value: testValue } })
+  fireEvent.change(passwordEl, { target: { value: testValue } })
+  fireEvent.click(buttonEl)
+
+  // getByText not for async 
+  const userItem = await screen.findByText('John')
+
+  expect(userItem).toBeInTheDocument()
 })

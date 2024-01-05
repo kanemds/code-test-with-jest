@@ -24,3 +24,13 @@ to:
       // create react app build in jest
 
        "test": "react-scripts test --coverage",
+
+
+if using axios, there will be module not support
+change from:
+
+  "test": "react-scripts test --coverage",
+
+to:
+
+  "test": "react-scripts test --coverage --transformIgnorePatterns \"node_modules/(?!axios)/\"",
