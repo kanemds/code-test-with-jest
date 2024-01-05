@@ -1,0 +1,98 @@
+// In your specific test file where you want to use the mock:
+jest.mock('axios', () => ({
+  __esModule: true,
+  default: {
+    get: () => ({
+      data: { id: 1, name: 'John' }
+    })
+  }
+}));
+
+// In other test files or suites, you can use the actual axios library.
+
+// ...
+
+// Or, if you want to use the mock only for specific tests within a file:
+describe('Some tests with mock', () => {
+  jest.mock('axios', () => ({
+    // mock implementation
+  }));
+
+  it('test using mock', () => {
+    // test logic
+  });
+});
+
+describe('Other tests without mock', () => {
+  it('test without mock', () => {
+    // test logic
+  });
+});
+
+// In your code:
+if (process.env.NODE_ENV === 'test') {
+  // In your test environment, use the mock
+  jest.mock('axios', () => ({
+    // mock implementation
+  }));
+} else {
+  // In other environments, use the actual axios library
+}
+
+
+When you use jest.mock('axios', ...), it mocks the axios module for the duration of your test, meaning that any subsequent calls to axios in the code being tested will use the mocked implementation. This is often done to isolate the component from actual API calls during testing and to control the data returned.
+
+If you want to call the actual API at the same time as using the mocked version in certain tests, you can achieve this by either:
+
+Scoped Mocking: Use jest.mock only for specific test files or test suites where you want the mock. In other files or suites, you can use the actual axios library.
+
+Example:
+
+javascript
+Copy code
+// In your specific test file where you want to use the mock:
+jest.mock('axios', () => ({
+  __esModule: true,
+  default: {
+    get: () => ({
+      data: { id: 1, name: 'John' }
+    })
+  }
+}));
+
+// In other test files or suites, you can use the actual axios library.
+
+// ...
+
+// Or, if you want to use the mock only for specific tests within a file:
+describe('Some tests with mock', () => {
+  jest.mock('axios', () => ({
+    // mock implementation
+  }));
+
+  it('test using mock', () => {
+    // test logic
+  });
+});
+
+describe('Other tests without mock', () => {
+  it('test without mock', () => {
+    // test logic
+  });
+});
+Conditional Mocking: Conditionally use the mock based on some condition within your code.
+
+Example:
+
+javascript
+Copy code
+// In your code:
+if (process.env.NODE_ENV === 'test') {
+  // In your test environment, use the mock
+  jest.mock('axios', () => ({
+    // mock implementation
+  }));
+} else {
+  // In other environments, use the actual axios library
+}
+Keep in mind that if you use the mock globally for all tests, you won't be able to simultaneously use the actual API in those tests. The mocking is applied globally and affects all modules that import axios.
